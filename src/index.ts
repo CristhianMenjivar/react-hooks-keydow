@@ -1,21 +1,23 @@
-import {useEffect} from 'react'
+import { useEffect } from 'react';
 interface useKeyDownEventParams {
-  callback: (key: string) => void // arrow function
-  keys: string[]
+  callback: (key: string) => void;
+  keys: string[];
 }
 
-const useKeyDownEvent = ({ callback, keys=[] }: useKeyDownEventParams) => {
-  
-  const validateKeys = (key: string) => {
-    if (keys?.length > 0) {
-      callback(key)
-    }
-  }
-
+const useKeyDownEvent = ({ callback, keys }: useKeyDownEventParams) => {
   useEffect(() => {
-    window.addEventListener('keydown', (event)=> validateKeys(event.key))
-    return () => window.removeEventListener('keydown',(event)=> validateKeys(event.key))
-  }, [])
-}
+    const validateKeys = (key: string) => {
+      if (keys?.length > 0) {
+        callback(key);
+      }
+    };
 
-export default useKeyDownEvent
+    window.addEventListener('keydown', event => validateKeys(event.key));
+
+    return () =>
+      window.removeEventListener('keydown', event => validateKeys(event.key));
+    // eslint-disable-next-line
+  }, []);
+};
+
+export default useKeyDownEvent;
