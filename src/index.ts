@@ -7,7 +7,7 @@ interface useKeyDownEventParams {
 const useKeyDownEvent = ({ callback, keys }: useKeyDownEventParams) => {
   useEffect(() => {
     const validateKeys = (key: string) => {
-      if (keys?.length > 0) {
+      if (keys?.length > 0 && keys.includes(key)) {
         callback(key);
       }
     };
