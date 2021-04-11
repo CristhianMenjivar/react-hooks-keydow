@@ -23,16 +23,16 @@ npm i react-hooks-keydow
 - Simply import react-hooks-keydow
 
 ```js
-import useKeyDownEvent from 'react-hooks-keydow';
+import { useKeyDownEvent, Comands } from 'react-hooks-keydow';
 
 const App = () => {
   const callback = key => {
     console.log(key);
   };
 
-  // the parameters are required
   useKeyDownEvent({
     callback,
+    comand: Comands.ctrlKey,
     keys: ['a', 'b', 'Escape'],
   });
 };
